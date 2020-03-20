@@ -29,20 +29,76 @@ import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-
-import avatar from "assets/img/jisoo3.jpg";
-
+import axios from 'axios';
+import avatar from "assets/img/jisoo4.jpg";
+import * as url from './../ultils/URL';
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      company: '',
+      fullname: '',
+      address: '',
+      country: '',
+      city: '',
+      description: '',
+      isUpdate: false
+    }
+  }
+
+  onChangeValue = (e) => {
+    var name = e.target.name;
+    var value = e.target.value;
+    this.setState({
+      [name]: value
+    })
+  }
+
+  onSubmitForm = async (event) => {
+    event.preventDefault();
+    const data = {
+      company: this.state.company,
+      fullname: this.state.fullName,
+      email: JSON.parse(localStorage.getItem('userInfo')).email,
+      address: this.state.address,
+      country: this.state.country,
+      city: this.state.city,
+      description: this.state.description
+    }
+    console.log(data)
+
+    const response = await axios({
+      url: url.BASE_URL + '/rest/update',
+      method: 'POST',
+      data: data
+    });
+
+    console.log(response);
+    if (response.status === 200) {
+      this.setState({
+        isUpdate: true
+      })
+    }
+
+  }
   render() {
+    var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    var { company, fullname, address, country, city, description } = this.state;
+    company = userInfo.company;
+    fullname = userInfo.fullName;
+    address = userInfo.address;
+    country = userInfo.country;
+    city = userInfo.city;
+    description = userInfo.description;
     return (
       <div className="content">
         <Grid fluid>
           <Row>
             <Col md={8}>
               <Card
-                title="Edit Profile"
+                title="User Profile"
                 content={
-                  <form>
+                  <form onSubmit={this.onSubmitForm}>
                     <FormInputs
                       ncols={["col-md-5", "col-md-3", "col-md-4"]}
                       properties={[
@@ -51,43 +107,26 @@ class UserProfile extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Company",
-                          defaultValue: "Start-up",
-                          disabled: true
+                          name: "company",
+                          value: company,
+                          onChange: this.onChangeValue
                         },
                         {
-                          label: "Username",
+                          label: "FullName",
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Username",
-                          defaultValue: "taroopa",
-                          disabled: true
+                          placeholder: "FullName",
+                          name: "fullname",
+                          value: fullname,
+                          onChange: this.onChangeValue
                         },
                         {
                           label: "Email",
                           type: "email",
                           bsClass: "form-control",
                           placeholder: "Email",
-                          defaultValue: "tarooppa@gmail.com",
+                          defaultValue: userInfo.email,
                           disabled: true
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-6", "col-md-6"]}
-                      properties={[
-                        {
-                          label: "First name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "First name",
-                          defaultValue: "Taro"
-                        },
-                        {
-                          label: "Last name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Last name",
-                          defaultValue: "Oppa"
                         }
                       ]}
                     />
@@ -98,9 +137,10 @@ class UserProfile extends Component {
                           label: "Adress",
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Home Adress",
-                          defaultValue:
-                            "Ha Noi, Viet Nam"
+                          placeholder: "Adress",
+                          name: "address",
+                          value: address,
+                          onChange: this.onChangeValue
                         }
                       ]}
                     />
@@ -112,14 +152,16 @@ class UserProfile extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "City",
-                          defaultValue: "Ha Noi"
+                          value: city,
+                          onChange: this.onChangeValue
                         },
                         {
                           label: "Country",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Country",
-                          defaultValue: "Viet Nam"
+                          value: country,
+                          onChange: this.onChangeValue
                         },
                         {
                           label: "Postal Code",
@@ -138,8 +180,10 @@ class UserProfile extends Component {
                             rows="5"
                             componentClass="textarea"
                             bsClass="form-control"
-                            placeholder="Here can be your description"
-                            defaultValue="I like reading book, playing sports,learning programing language"
+                            placeholder="Description"
+                            name="description"
+                            value={description}
+                            onChange={this.onChangeValue}
                           />
                         </FormGroup>
                       </Col>

@@ -89,7 +89,7 @@ class Admin extends Component {
           />
         );
       } else {
-        return null;
+        return null
       }
     });
   };

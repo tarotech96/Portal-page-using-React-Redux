@@ -8,7 +8,7 @@
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard-react/blob/master/LICENSE.md)
 
-* Coded by Creative Tim
+* Coded by Creative Taro Oppa
 
 =========================================================
 
@@ -19,10 +19,10 @@
 import React, { Component } from "react";
 import Toggle from "react-toggle";
 
-import imagine1 from "assets/img/sidebar-1.jpg";
-import imagine2 from "assets/img/sidebar-2.jpg";
-import imagine3 from "assets/img/sidebar-3.jpg";
-import imagine4 from "assets/img/sidebar-4.jpg";
+import imagine1 from "assets/img/jisoo1.jpg";
+import imagine2 from "assets/img/jisoo3.jpg";
+import imagine3 from "assets/img/jisoo4.jpg";
+import imagine4 from "assets/img/jisoo5.jpg";
 
 class FixedPlugin extends Component {
   constructor(props) {
@@ -181,13 +181,13 @@ class FixedPlugin extends Component {
 
             <li className="button-container">
               <div className="">
-                <a
+                {/* <a
                   href="https://www.creative-tim.com/product/light-bootstrap-dashboard-react?ref=lbdr-fixed-plugin"
                   target="_blank"
                   className="btn btn-success btn-block btn-fill"
                 >
                   Download free!
-                </a>
+                </a> */}
               </div>
             </li>
           </ul>
