@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { Grid, Row, Col, Table, Button, Pagination } from "react-bootstrap";
+import { Grid, Row, Col, Table, Button, Pagination, InputGroup, FormControl } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import { Link } from 'react-router-dom';
 // import { thArray, tdArray } from "variables/Variables.jsx";
@@ -17,7 +17,8 @@ class TableList extends Component {
       totalsPage: 0,
       perPage: 5,
       isActivePre: true,
-      isActiveNext: false
+      isActiveNext: false,
+      keySearch: ''
     }
   }
 
@@ -25,15 +26,18 @@ class TableList extends Component {
     const promise = new Promise((resolve, reject) => {
       axios({
         method: 'GET',
-        url: url.BASE_URL + '/rest/user/list'
+        url: url.BASE_URL + '/user/list'
+        // headers: {
+        //   Authorization: "Bearer " + localStorage.getItem('token')
+        // }
       }).then((res) => resolve(res))
         .catch((err) => reject(err))
     })
-    promise.then((data) => {
+    promise.then((res) => {
       var { getAllUsers } = this.props;
-      getAllUsers(data.data);
+      getAllUsers(res.data.data);
       this.setState({
-        listUser: data.data
+        listUser: res.data.data
       })
     })
       .catch((err) => console.log(err))
@@ -63,25 +67,50 @@ class TableList extends Component {
     }
   }
 
+  onChangeSearch = (e) => {
+    this.setState({
+      keySearch: e.target.value
+    })
+  }
   render() {
-    var { listUser, curPage, totalsPage, perPage, isActivePre, isActiveNext } = this.state;
+    var { listUser, curPage, totalsPage, perPage, isActivePre, isActiveNext, keySearch } = this.state;
     var start = (curPage - 1) * perPage;
     var end = curPage * perPage;
-    var listRender = listUser.map((ele, index) => {
-      return (
-        <tbody key={index}>
-          <tr>
-            <td>{ele.id}</td>
-            <td>{ele.fullName}</td>
-            <td >{ele.email}</td>
-            <td>{ele.salary}$</td>
-            <td>{ele.city}</td>
-            <td>{ele.country}</td>
-          </tr>
-        </tbody>
-      )
-    }).slice(start, end)
+    var listRender = null;
 
+    if (keySearch.trim()) {
+      listRender = listUser.filter((ele) => {
+        return ele.fullname.toLowerCase().includes(keySearch.toLowerCase());
+      }).map((ele, index) => {
+        return (
+          <tbody key={index}>
+            <tr>
+              <td>{ele.id}</td>
+              <td>{ele.fullname}</td>
+              <td>{ele.email}</td>
+              <td>{ele.salary}$</td>
+              <td>{ele.city}</td>
+              <td>{ele.country}</td>
+            </tr>
+          </tbody>
+        )
+      }).slice(start, end)
+    } else {
+      listRender = listUser.map((ele, index) => {
+        return (
+          <tbody key={index}>
+            <tr>
+              <td>{ele.id}</td>
+              <td>{ele.fullname}</td>
+              <td>{ele.email}</td>
+              <td>{ele.salary}$</td>
+              <td>{ele.city}</td>
+              <td>{ele.country}</td>
+            </tr>
+          </tbody>
+        )
+      }).slice(start, end)
+    }
     if (curPage > 1) {
       isActivePre = false;
     }
@@ -114,13 +143,31 @@ class TableList extends Component {
     return (
       <div className="content">
         <Grid fluid>
-          <Button style={{ margin: '5px', marginLeft: '90%' }}
-            className="pull-right" bsStyle="info" bsSize="small"
-          >
-            <Link to="/insert" >Add New</Link>
-          </Button>
           <Row>
             <Col md={12}>
+              <div style={{ display: 'flex', margin: '5px' }}>
+                <InputGroup className="mb-3">
+                  {/* <InputGroup.Prepend>
+                  <InputGroup.Text id="search">@</InputGroup.Text>
+                </InputGroup.Prepend> */}
+                  <FormControl
+                    type="string"
+                    placeholder="Enter key search..."
+                    ref="keySearch"
+                    onChange={this.onChangeSearch}
+                  />
+                </InputGroup>
+                {/* <Button
+                  className="pull-right" bsStyle="success" bsSize="small"
+                >
+                  Search
+                 </Button> */}
+                <Button style={{ marginLeft: '70%', width: '10%' }}
+                  className="pull-right" bsStyle="info" bsSize="sm" 
+                >
+                  <Link to="/insert" >Add New</Link>
+                </Button>
+              </div>
               <Card
                 title="List User"
                 category=""
@@ -141,10 +188,10 @@ class TableList extends Component {
                       </thead>
                       {listRender}
                     </Table>
-                    {pagination}
                   </div>
                 }
               />
+              {pagination}
             </Col>
           </Row>
         </Grid>

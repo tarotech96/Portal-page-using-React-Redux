@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import Toggle from "react-toggle";
 
-import imagine1 from "assets/img/jisoo1.jpg";
+import imagine1 from "assets/img/taro_oppa.jpg";
 import imagine2 from "assets/img/jisoo3.jpg";
 import imagine3 from "assets/img/jisoo4.jpg";
 import imagine4 from "assets/img/jisoo5.jpg";
@@ -116,7 +116,7 @@ class FixedPlugin extends Component {
                 <div className="clearfix" />
               </a>
             </li>
-            <li className="header-title">Sidebar Images</li>
+            <li className="header-title">Logo</li>
             <li className={this.state["bgImage"] === imagine1 ? "active" : ""}>
               <a
                 className="img-holder switch-trigger"

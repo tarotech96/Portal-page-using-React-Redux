@@ -1,8 +1,16 @@
 
 import React, { Component } from "react";
-import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
-
+import { NavItem, Nav, NavDropdown, MenuItem, Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 class AdminNavbarLinks extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  Logout = () => {
+    localStorage.clear();
+  }
   render() {
     const notification = (
       <div>
@@ -45,17 +53,15 @@ class AdminNavbarLinks extends Component {
             title="Dropdown"
             id="basic-nav-dropdown-right"
           >
-            <MenuItem eventKey={2.1}>Action</MenuItem>
-            <MenuItem eventKey={2.2}>Another action</MenuItem>
-            <MenuItem eventKey={2.3}>Something</MenuItem>
-            <MenuItem eventKey={2.4}>Another action</MenuItem>
-            <MenuItem eventKey={2.5}>Something</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={2.5}>Separated link</MenuItem>
+            <MenuItem><i className="fa fa-user"></i>Profile</MenuItem>
+            <MenuItem><i className="fa fa-history"></i>History</MenuItem>
+            <MenuItem>
+              <Link onClick={this.Logout} to="/login">
+                <i className="fa fa-sign-out"></i> Log out
+                </Link>
+            </MenuItem>
           </NavDropdown>
-          <NavItem eventKey={3} href="#">
-            Log out
-          </NavItem>
+
         </Nav>
       </div>
     );

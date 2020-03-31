@@ -20,8 +20,8 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: '',
-      fullname: '',
+      company: 'Taro Tech',
+      fullname: 'Taro Oppa',
       address: '',
       country: '',
       city: '',
@@ -68,8 +68,8 @@ class UserProfile extends Component {
   render() {
     var userInfo = JSON.parse(localStorage.getItem('userInfo'));
     var { company, fullname, address, country, city, description } = this.state;
-    company = userInfo.company;
-    fullname = userInfo.fullName;
+    // company = userInfo.company;
+    // fullname = userInfo.fullname;
     address = userInfo.address;
     country = userInfo.country;
     city = userInfo.city;
@@ -188,9 +188,9 @@ class UserProfile extends Component {
                 userName="tarooppa"
                 description={
                   <span>
-                    "I'm Sofware Engineer
+                    He will never get a girlfriend.
                     <br />
-                    I like coding"
+                    If without that face.
                   </span>
                 }
                 socials={

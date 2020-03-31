@@ -21,7 +21,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/admin" render={props => <AdminLayout {...props} />} />
+        <Route path="/admin" render= {props => <AdminLayout {...props} />} />
         <Route path="/insert" component={AddUser} />
         <Route path="/login" component={Login} />
         <Redirect from="/" to="/login" />

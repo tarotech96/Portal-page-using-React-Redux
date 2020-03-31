@@ -42,10 +42,7 @@ class Login extends Component {
             axios({
                 method: 'POST',
                 url: url.BASE_URL + '/login',
-                data: data,
-                headers: {
-                    Authorization: 'Bearer' + localStorage.getItem('token')
-                }
+                data: data
             }).then((res) => {
                 resolve(res);
             }).catch((err) => {
@@ -59,7 +56,8 @@ class Login extends Component {
                 this.setState({
                     isRedirect: true
                 })
-                localStorage.setItem('userInfo', response.data.userInfo);
+                localStorage.setItem('userInfo', JSON.stringify(response.data.userInfo));
+                localStorage.setItem('token', JSON.stringify(response.data.token));
             } else {
                 this.setState({
                     isError: true,
