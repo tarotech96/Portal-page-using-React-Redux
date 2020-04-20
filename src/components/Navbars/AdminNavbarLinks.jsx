@@ -1,13 +1,8 @@
 
 import React, { Component } from "react";
-import { NavItem, Nav, NavDropdown, MenuItem, Button } from "react-bootstrap";
+import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 class AdminNavbarLinks extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   Logout = () => {
     localStorage.clear();
   }
@@ -45,11 +40,11 @@ class AdminNavbarLinks extends Component {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">
+          {/* <NavItem eventKey={1} href="#">
             Account
-          </NavItem>
+          </NavItem> */}
           <NavDropdown
-            eventKey={2}
+            eventKey={1}
             title="Dropdown"
             id="basic-nav-dropdown-right"
           >

@@ -13,13 +13,10 @@ class Footer extends Component {
                 <a href="#pablo">Home</a>
               </li>
               <li>
-                <a href="#pablo">Company</a>
+                <a href="#pablo">About</a>
               </li>
               <li>
-                <a href="#pablo">Portfolio</a>
-              </li>
-              <li>
-                <a href="#pablo">Blog</a>
+                <a href="#pablo">Contact</a>
               </li>
             </ul>
           </nav>
@@ -28,7 +25,6 @@ class Footer extends Component {
             <a href="https://github.com/tarotech96">
               Taro Oppa
             </a>
-            , made with love for a better web
           </p>
         </Grid>
       </footer>

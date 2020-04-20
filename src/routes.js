@@ -7,8 +7,8 @@ import Upgrade from "views/Upgrade.jsx";
 const dashboardRoutes = [
   {
     path: "/dashboard",
-    name: "Dashboard",
-    icon: "pe-7s-graph",
+    name: "Covid 19",
+    icon: "fas fa-virus",
     component: Dashboard,
     layout: "/admin"
   },

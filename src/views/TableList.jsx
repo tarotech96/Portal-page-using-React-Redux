@@ -72,6 +72,16 @@ class TableList extends Component {
       keySearch: e.target.value
     })
   }
+
+  sortName = (e) => {
+    var list = this.state.listUser;
+    list.sort((a, b) => {
+      return a.fullname < b.fullname ? -1 : a.fullname > b.fullname ? 1 : 0;
+    })
+    this.setState({
+      listUser: list
+    })
+  }
   render() {
     var { listUser, curPage, totalsPage, perPage, isActivePre, isActiveNext, keySearch } = this.state;
     var start = (curPage - 1) * perPage;
@@ -109,7 +119,7 @@ class TableList extends Component {
             </tr>
           </tbody>
         )
-      }).slice(start, end)
+      }).slice(start, end);
     }
     if (curPage > 1) {
       isActivePre = false;
@@ -119,7 +129,9 @@ class TableList extends Component {
     var pageItems = [];
     for (let item = 1; item <= totalsPage; item++) {
       pageItems.push(
-        <Pagination.Item onClick={() => this.onChangePage(item)} key={item} active={item === curPage}>{item <= 5 ? item : <Pagination.Ellipsis />} </Pagination.Item>
+        <Pagination.Item onClick={() => this.onChangePage(item)} key={item} active={item === curPage}>
+          {item <= 5 ? item : <Pagination.Ellipsis />}
+        </Pagination.Item>
       )
     }
 
@@ -152,7 +164,7 @@ class TableList extends Component {
                 </InputGroup.Prepend> */}
                   <FormControl
                     type="string"
-                    placeholder="Enter key search..."
+                    placeholder="Search..."
                     ref="keySearch"
                     onChange={this.onChangeSearch}
                   />
@@ -162,8 +174,8 @@ class TableList extends Component {
                 >
                   Search
                  </Button> */}
-                <Button style={{ marginLeft: '70%', width: '10%' }}
-                  className="pull-right" bsStyle="info" bsSize="sm" 
+                <Button style={{ marginLeft: '80%', width: '10%', background: '#a25819', color: '#fffff'}}
+                  className="pull-right" bsStyle="info" bsSize="sm"
                 >
                   <Link to="/insert" >Add New</Link>
                 </Button>
@@ -179,7 +191,7 @@ class TableList extends Component {
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>FullName</th>
+                          <th style={{ cursor: 'pointer' }} onClick={this.sortName} >FullName</th>
                           <th>Email</th>
                           <th>Salary</th>
                           <th>City</th>
