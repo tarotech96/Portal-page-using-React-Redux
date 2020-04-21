@@ -6,6 +6,11 @@ class AdminNavbarLinks extends Component {
   Logout = () => {
     localStorage.clear();
   }
+
+  changeLanguage = (lng) => {
+    this.props.changeLanguage(lng);
+  }
+
   render() {
     const notification = (
       <div>
@@ -18,10 +23,17 @@ class AdminNavbarLinks extends Component {
     return (
       <div>
         <Nav>
-          <NavItem eventKey={1} href="#">
+          {/* <NavItem eventKey={1} href="#">
             <i className="fa fa-dashboard" />
             <p className="hidden-lg hidden-md">Dashboard</p>
+          </NavItem> */}
+
+          <NavItem eventKey={3} href="#">
+            <i className="fa fa-search" />
+            <p className="hidden-lg hidden-md">Search</p>
           </NavItem>
+        </Nav>
+        <Nav pullRight>
           <NavDropdown
             eventKey={2}
             title={notification}
@@ -34,17 +46,14 @@ class AdminNavbarLinks extends Component {
             <MenuItem eventKey={2.4}>Notification 4</MenuItem>
             <MenuItem eventKey={2.5}>Another notifications</MenuItem>
           </NavDropdown>
-          <NavItem eventKey={3} href="#">
-            <i className="fa fa-search" />
-            <p className="hidden-lg hidden-md">Search</p>
-          </NavItem>
-        </Nav>
-        <Nav pullRight>
-          {/* <NavItem eventKey={1} href="#">
-            Account
-          </NavItem> */}
+
+          <NavDropdown eventKey={1} title="Language" id="basic-nav-dropdown-center">
+            <MenuItem onClick={() => this.changeLanguage('en')}><i className="fa fa-language"></i>English</MenuItem>
+            <MenuItem onClick={() => this.changeLanguage('vn')} ><i className="fa fa-language"></i>VietNamese</MenuItem>
+            <MenuItem onClick={() => this.changeLanguage('jp')} ><i className="fa fa-language"></i>Japanese</MenuItem>
+          </NavDropdown>
           <NavDropdown
-            eventKey={1}
+            eventKey={2}
             title="Dropdown"
             id="basic-nav-dropdown-right"
           >

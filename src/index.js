@@ -16,17 +16,24 @@ import { createStore } from 'redux';
 import myReducers from './reducers/myReducers';
 import Login from './components/Login/Login';
 import AddUser from './components/Users/AddUser';
+
+import { I18nextProvider } from 'react-i18next';
+
+import i18n from './assets/i18n/i18n.js';
 const store = createStore(myReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/admin" render= {props => <AdminLayout {...props} />} />
-        <Route path="/insert" component={AddUser} />
-        <Route path="/login" component={Login} />
-        <Redirect from="/" to="/admin" />
-      </Switch>
-    </BrowserRouter>
-  </Provider>,
+  <I18nextProvider i18n={i18n}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/admin" render={props => <AdminLayout {...props}/>} />
+          <Route path="/insert" component={AddUser} />
+          <Route path="/login" component={Login} />
+          <Redirect from="/" to="/admin/dashboard" />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+  </I18nextProvider>,
   document.getElementById("root")
 );

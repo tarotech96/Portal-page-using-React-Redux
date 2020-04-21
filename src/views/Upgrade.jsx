@@ -15,8 +15,7 @@ class Icons extends Component {
             <Col md={8} mdOffset={2}>
               <Card
                 hCenter
-                title="Light Bootstrap Dashboard PRO React"
-                category="Are you looking for more components? Please check our Premium Version of Light Bootstrap Dashboard React."
+                title="Taro Upgrade to Pro"
                 ctTableResponsive
                 ctTableFullWidth
                 ctTableUpgrade
@@ -84,7 +83,6 @@ class Icons extends Component {
                         <td>
                           <Button
                             target="_blank"
-                            href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro-react/?ref=lbdr-upgrade-page"
                             round
                             fill
                             bsStyle="info"

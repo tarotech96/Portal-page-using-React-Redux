@@ -36,7 +36,7 @@ class Dashboard extends Component {
       var data = await response.data;
       var confirmed = await data.confirmed;
       var recovered = await data.recovered;
-      var deaths = data.deaths;
+      var deaths = await data.deaths;
       this.setState({
         infected: confirmed.value,
         recovered: recovered.value,
@@ -193,7 +193,7 @@ class Dashboard extends Component {
 
           <Row>
             <div style={{ width: '80%', marginLeft: '100px' }}>
-              {(country === 'Global') ? (<Line
+              {(country === '' || country === 'Global') ? (<Line
                 data={{
                   labels: dailyData.map(obj => obj.reportDate),
                   datasets: [

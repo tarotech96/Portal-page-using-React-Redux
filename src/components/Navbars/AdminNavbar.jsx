@@ -28,6 +28,11 @@ class Header extends Component {
     };
     document.body.appendChild(node);
   }
+
+  changeLanguage = (lng) => {
+    this.props.changeLanguage(lng);
+  }
+
   render() {
     return (
       <Navbar fluid>
@@ -38,7 +43,7 @@ class Header extends Component {
           <Navbar.Toggle onClick={this.mobileSidebarToggle} />
         </Navbar.Header>
         <Navbar.Collapse>
-          <AdminNavbarLinks />
+          <AdminNavbarLinks changeLanguage={(lng) => this.changeLanguage(lng)} />
         </Navbar.Collapse>
       </Navbar>
     );

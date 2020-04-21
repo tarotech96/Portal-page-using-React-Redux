@@ -174,7 +174,7 @@ class TableList extends Component {
                 >
                   Search
                  </Button> */}
-                <Button style={{ marginLeft: '80%', width: '10%', background: '#a25819', color: '#fffff'}}
+                <Button style={{ marginLeft: '80%', width: '10%', background: '#a1367', color: '#fffff'}}
                   className="pull-right" bsStyle="info" bsSize="sm"
                 >
                   <Link to="/insert" >Add New</Link>

@@ -7,10 +7,10 @@ import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
-
 import { style } from "variables/Variables.jsx";
-
 import routes from "routes.js";
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from './../assets/i18n/i18n.js';
 
 import image from "assets/img/sidebar-3.jpg";
 
@@ -45,7 +45,7 @@ class Admin extends Component {
         break;
     }
     this.state._notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-gift" />,
+      title: <span data-notify="icon" className="fas fa-bell" />,
       message: (
         <div>
           Welcome to <b>my page</b> - a beautiful theme for
@@ -54,7 +54,7 @@ class Admin extends Component {
       ),
       level: level,
       position: position,
-      autoDismiss: 15
+      autoDismiss: 10
     });
   };
   getRoutes = routes => {
@@ -127,10 +127,10 @@ class Admin extends Component {
         break;
     }
     _notificationSystem.addNotification({
-      title: <span data-notify="icon" className="pe-7s-gift" />,
+      title: <span data-notify="icon" className="fas fa-bell" />,
       message: (
         <div>
-           Welcome to <b>my page</b> - I am Taro Tech
+          Welcome to Taro Oppa
         </div>
       ),
       level: level,
@@ -152,32 +152,38 @@ class Admin extends Component {
       this.refs.mainPanel.scrollTop = 0;
     }
   }
+  changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  }
   render() {
     return (
-      <div className="wrapper">
-        <NotificationSystem ref="notificationSystem" style={style} />
-        <Sidebar {...this.props} routes={routes} image={this.state.image}
-        color={this.state.color}
-        hasImage={this.state.hasImage}/>
-        <div id="main-panel" className="main-panel" ref="mainPanel">
-          <AdminNavbar
-            {...this.props}
-            brandText={this.getBrandText(this.props.location.pathname)}
-          />
-          <Switch>{this.getRoutes(routes)}</Switch>
-          <Footer />
-          <FixedPlugin
-            handleImageClick={this.handleImageClick}
-            handleColorClick={this.handleColorClick}
-            handleHasImage={this.handleHasImage}
-            bgColor={this.state["color"]}
-            bgImage={this.state["image"]}
-            mini={this.state["mini"]}
-            handleFixedClick={this.handleFixedClick}
-            fixedClasses={this.state.fixedClasses}
-          />
+      <Trans>
+        <div className="wrapper">
+          <NotificationSystem ref="notificationSystem" style={style} />
+          <Sidebar {...this.props} routes={routes} image={this.state.image}
+            color={this.state.color}
+            hasImage={this.state.hasImage} />
+          <div id="main-panel" className="main-panel" ref="mainPanel">
+            <AdminNavbar
+              {...this.props}
+              brandText={this.getBrandText(this.props.location.pathname)}
+              changeLanguage={(lng) => this.changeLanguage(lng)}
+            />
+            <Switch>{this.getRoutes(routes)}</Switch>
+            <Footer />
+            <FixedPlugin
+              handleImageClick={this.handleImageClick}
+              handleColorClick={this.handleColorClick}
+              handleHasImage={this.handleHasImage}
+              bgColor={this.state["color"]}
+              bgImage={this.state["image"]}
+              mini={this.state["mini"]}
+              handleFixedClick={this.handleFixedClick}
+              fixedClasses={this.state.fixedClasses}
+            />
+          </div>
         </div>
-      </div>
+      </Trans>
     );
   }
 }
