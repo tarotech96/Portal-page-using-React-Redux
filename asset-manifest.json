@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/portal_page/static/css/main.c6aa40b6.chunk.css",
+    "main.js": "/portal_page/static/js/main.c0bd246a.chunk.js",
+    "main.js.map": "/portal_page/static/js/main.c0bd246a.chunk.js.map",
+    "runtime~main.js": "/portal_page/static/js/runtime~main.aacbc86c.js",
+    "runtime~main.js.map": "/portal_page/static/js/runtime~main.aacbc86c.js.map",
+    "static/css/2.1c5c90c6.chunk.css": "/portal_page/static/css/2.1c5c90c6.chunk.css",
+    "static/js/2.2bb8ef84.chunk.js": "/portal_page/static/js/2.2bb8ef84.chunk.js",
+    "static/js/2.2bb8ef84.chunk.js.map": "/portal_page/static/js/2.2bb8ef84.chunk.js.map",
+    "index.html": "/portal_page/index.html",
+    "precache-manifest.260d21f90166a5107932f52f2eb079f4.js": "/portal_page/precache-manifest.260d21f90166a5107932f52f2eb079f4.js",
+    "service-worker.js": "/portal_page/service-worker.js",
+    "static/css/2.1c5c90c6.chunk.css.map": "/portal_page/static/css/2.1c5c90c6.chunk.css.map",
+    "static/css/main.c6aa40b6.chunk.css.map": "/portal_page/static/css/main.c6aa40b6.chunk.css.map",
+    "static/media/pe-icon-7-stroke.css": "/portal_page/static/media/Pe-icon-7-stroke.dedf2698.svg",
+    "static/media/face.jpg": "/portal_page/static/media/face.1fb45688.jpg",
+    "static/media/bootstrap.min.css": "/portal_page/static/media/glyphicons-halflings-regular.fa277232.woff",
+    "static/media/jisoo4.jpg": "/portal_page/static/media/jisoo4.8a8d6023.jpg",
+    "static/media/sidebar-3.jpg": "/portal_page/static/media/sidebar-3.34535b95.jpg"
+  }
+}
